@@ -21,17 +21,16 @@ wrongAnswerSelectors.forEach(selector => {
   })
 })
 
-// Add listeners to input elements in questions
+// Add listeners to check input elements in questions
 Object.entries(freeResponseAnswers).forEach(([id, answers]) => {
   const question = document.querySelector(`.question#${id}`)
   const input = question?.querySelector('input')
+  const button = question?.querySelector('.check-btn')
+  if (!input || !button) return
 
-  if (!input) return
-
-  input.addEventListener('input', () => {
+  button.addEventListener('click', () => {
     const value = input.value.trim().toLowerCase()
 
-    // Check if input matches any correct answer
     if (answers.includes(value)) {
       input.classList.add('right')
       input.classList.remove('wrong')
